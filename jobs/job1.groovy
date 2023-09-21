@@ -21,7 +21,7 @@ Yaml parser = new Yaml()
 list.each {
   logger.info(it.path)
   logger.info(it.name)
-  List configuration = parser.load((it as File).text)
+  Map configuration = parser.load((it as File).text)
   configuration.each{logger.info(it.subject)}
 }
 
