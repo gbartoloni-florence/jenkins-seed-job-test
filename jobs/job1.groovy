@@ -1,7 +1,7 @@
 import groovy.io.FileType
 import java.util.logging.Logger
 import org.yaml.snakeyaml.Yaml
-
+import java.util.Random
 
 // https://stackoverflow.com/questions/42146524/write-log-from-jenkinsfile
 Logger logger = Logger.getLogger('org.example.jobdsl')
@@ -17,6 +17,7 @@ dir.eachFileRecurse (FileType.FILES) { file ->
 
 Yaml parser = new Yaml()
 
+Random random = new Random()
 
 list.each { configFile -> 
   logger.info(configFile.path)
@@ -28,7 +29,7 @@ list.each { configFile ->
     multibranchPipelineJob(app.name) {
       branchSources {
           git {
-              // id('123456789') // IMPORTANT: use a constant and unique identifier
+              id(random.nextInt(10 ** 8)) // IMPORTANT: use a constant and unique identifier
               remote(app.repoUrl)
               credentialsId('github-ci')
           }
