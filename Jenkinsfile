@@ -2,10 +2,10 @@ pipeline {
     agent any
     
     stages {
-        stage('Genera Pipeline 1') {
+        stage('Genera Pipelines') {
             steps {
                 script {
-                    jobDsl {
+                    def jobDslScript = '''
                         jobarray = ['job1','job2']
                         for(currentjob in jobarray)
                         multibranchPipelineJob("$currentjob") { // normal variable syntax
@@ -16,7 +16,8 @@ pipeline {
                                 }
                             }
                         }
-                    }
+                    '''
+                    jobDsl(jobDslScript)
                 }
             }
         }
