@@ -23,6 +23,30 @@ list.each { configFile ->
   logger.info(configFile.name)
   Map configuration = parser.load((configFile as File).text)
   configuration.each{logger.info(it.toString())}
+  configuration.apps.each { app ->
+
+    multibranchPipelineJob(app.name) {
+      branchSources {
+          git {
+              // id('123456789') // IMPORTANT: use a constant and unique identifier
+              remote(app.repoUrl)
+              credentialsId('github-ci')
+          }
+      }
+      orphanedItemStrategy {
+          discardOldItems {
+              numToKeep(10)
+          }
+      }
+    }
+  }
+  listView(configuration.project) {
+    jobs {
+      configuration.apps.each { app ->
+        name(app.name)
+      }
+    }
+  }
 }
 
 
