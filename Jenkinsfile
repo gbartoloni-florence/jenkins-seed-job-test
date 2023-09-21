@@ -5,15 +5,13 @@ pipeline {
         stage('Genera Pipelines') {
             steps {
                 
-                    def jobDslScript = '''
+                    
+                    jobDsl {
                         job('demo') {
                             steps {
                                 shell('echo Hello World!')
                             }
                         }
-                    '''
-                    jobDsl {
-                        scriptText(jobDslScript)
                     }
                 
             }
