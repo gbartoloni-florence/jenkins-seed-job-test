@@ -23,7 +23,7 @@ pipeline {
                         removedViewAction: 'DELETE',
                         lookupStrategy: 'SEED_JOB',
                         additionalClasspath: [].join('\n'),
-                        additionalParameters: [message: 'Hello from pipeline']
+                        additionalParameters: [message: 'Hello from pipeline', workspace: ${WORKSPACE}]
 
             }
         }
