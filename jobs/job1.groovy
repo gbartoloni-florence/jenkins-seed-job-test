@@ -4,7 +4,7 @@ import java.util.logging.Logger
 
 def list = []
 
-def dir = new File(${WORKSPACE})
+def dir = new File(workspace)
 dir.eachFileRecurse (FileType.FILES) { file ->
   list << file
 }
