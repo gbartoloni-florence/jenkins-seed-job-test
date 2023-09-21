@@ -18,10 +18,10 @@ dir.eachFileRecurse (FileType.FILES) { file ->
 Yaml parser = new Yaml()
 
 
-list.each {
-  logger.info(it.path)
-  logger.info(it.name)
-  Map configuration = parser.load((it as File).text)
+list.each { configFile -> 
+  logger.info(configFile.path)
+  logger.info(configFile.name)
+  Map configuration = parser.load((configFile as File).text)
   configuration.each{logger.info(it.subject)}
 }
 
