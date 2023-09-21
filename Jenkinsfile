@@ -12,7 +12,9 @@ pipeline {
                             }
                         }
                     '''
-                    jobDsl(jobDslScript)
+                    jobDsl {
+                        scriptText(jobDslScript)
+                    }
                 }
             }
         }
