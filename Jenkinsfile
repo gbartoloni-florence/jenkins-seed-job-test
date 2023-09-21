@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage("Clone Config Git Repository") {
             steps {
-                git(
-                    url: "https://github.com/gbartoloni-florence/jenkins-seed-job-config.git",
-                    branch: "main",
-                    changelog: true,
-                    poll: true
-                )
+                dir('seed-job-config') {
+                    git(
+                        url: "https://github.com/gbartoloni-florence/jenkins-seed-job-config.git",
+                        branch: "main",
+                        changelog: true,
+                        poll: false
+                    )
+                }
             }
         }
         stage('Genera Pipelines') {
