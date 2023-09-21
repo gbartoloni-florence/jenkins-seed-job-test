@@ -6,15 +6,7 @@ pipeline {
             steps {
                 
                     
-                    jobDsl {
-                        scriptText('''
-                        job('demo') {
-                            steps {
-                                shell('echo Hello World!')
-                            }
-                        }'''
-                        )
-                    }
+                    shell('echo Hello World!')
                 
             }
         }
