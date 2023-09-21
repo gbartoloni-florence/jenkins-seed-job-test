@@ -22,7 +22,7 @@ list.each { configFile ->
   logger.info(configFile.path)
   logger.info(configFile.name)
   Map configuration = parser.load((configFile as File).text)
-  configuration.each{logger.info(it.subject)}
+  configuration.each{logger.info(it)}
 }
 
 
