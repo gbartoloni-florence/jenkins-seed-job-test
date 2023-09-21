@@ -26,6 +26,11 @@ list.each { configFile ->
   configuration.apps.each { app ->
 
     multibranchPipelineJob(app.name) {
+      authorization {
+        configuration.users.each { user ->
+          permissions (user.id, ["View/Read"])
+        }
+      }
       branchSources {
           git {
               id((random.nextInt(10 ** 8)).toString()) // IMPORTANT: use a constant and unique identifier
@@ -41,11 +46,6 @@ list.each { configFile ->
     }
   }
   listView(configuration.project) {
-    authorization {
-      //configuration.users.each { user ->
-        permissions ('gbartoloni', ["View/Read"])
-      //}
-    }
     jobs {
       configuration.apps.each { app ->
         name(app.name)
