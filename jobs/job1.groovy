@@ -1,5 +1,6 @@
 import groovy.io.FileType
 import java.util.logging.Logger
+import groovy.yaml.YamlSlurper
 
 // https://stackoverflow.com/questions/42146524/write-log-from-jenkinsfile
 Logger logger = Logger.getLogger('org.example.jobdsl')
@@ -16,6 +17,9 @@ dir.eachFileRecurse (FileType.FILES) { file ->
 
 list.each {
   logger.info(it.path)
+  logger.info(it.name)
+  List configuration = new YamlSlurper().parse(it as File)
+  configuration.each{logger.info(it.subject)}
 }
 
 
