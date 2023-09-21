@@ -20,8 +20,7 @@ Yaml parser = new Yaml()
 Random random = new Random()
 
 list.each { configFile -> 
-  logger.info(configFile.path)
-  logger.info(configFile.name)
+  logger.info("Opening " + configFile.path)
   Map configuration = parser.load((configFile as File).text)
   configuration.each{logger.info(it.toString())}
   configuration.apps.each { app ->
@@ -42,6 +41,11 @@ list.each { configFile ->
     }
   }
   listView(configuration.project) {
+    authorization {
+      configuration.users.each { user ->
+        permissions (user.id, ["View/Read"])
+      }
+    }
     jobs {
       configuration.apps.each { app ->
         name(app.name)
