@@ -28,7 +28,7 @@ list.each { configFile ->
     multibranchPipelineJob(app.name) {
       authorization {
         configuration.users.each { user ->
-          permissions (user.id, ["hudson.model.Item.Read"])
+          permissions (user.id, ["hudson.model.Item.Raaead"])
         }
       }
       branchSources {
