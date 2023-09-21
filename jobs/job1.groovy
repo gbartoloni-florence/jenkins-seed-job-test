@@ -1,4 +1,4 @@
-jobarray = ['job1','job2']
+jobarray = ['job1','job3']
 for(currentjob in jobarray)
 multibranchPipelineJob("$currentjob") { // normal variable syntax
     branchSources {
