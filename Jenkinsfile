@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Genera Pipelines') {
             steps {
-                script {
+                
                     def jobDslScript = '''
                         job('demo') {
                             steps {
@@ -15,7 +15,7 @@ pipeline {
                     jobDsl {
                         scriptText(jobDslScript)
                     }
-                }
+                
             }
         }
     }
