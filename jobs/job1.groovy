@@ -8,7 +8,7 @@ logger.info(message)
 
 def list = []
 
-def dir = new File(workspace)
+def dir = new File(workspace + "/seed-job-config/configs")
 dir.eachFileRecurse (FileType.FILES) { file ->
   list << file
 }
