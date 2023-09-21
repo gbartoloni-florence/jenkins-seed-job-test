@@ -4,7 +4,7 @@ import java.util.logging.Logger
 
 def list = []
 
-def dir = new File(".")
+def dir = new File("./seed-job-config/")
 dir.eachFileRecurse (FileType.FILES) { file ->
   list << file
 }
