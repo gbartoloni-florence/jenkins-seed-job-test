@@ -42,9 +42,9 @@ list.each { configFile ->
   }
   listView(configuration.project) {
     authorization {
-      configuration.users.each { user ->
-        permissions (user.id, ["View/Read"])
-      }
+      //configuration.users.each { user ->
+        permissions ('gbartoloni', ["View/Read"])
+      //}
     }
     jobs {
       configuration.apps.each { app ->
