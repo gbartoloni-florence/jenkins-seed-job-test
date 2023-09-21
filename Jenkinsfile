@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git(
                     url: "https://github.com/gbartoloni-florence/jenkins-seed-job-config.git",
-                    branch: "mail",
+                    branch: "main",
                     changelog: true,
                     poll: true
                 )
