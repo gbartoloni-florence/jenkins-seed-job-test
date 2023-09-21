@@ -29,7 +29,7 @@ list.each { configFile ->
     multibranchPipelineJob(app.name) {
       branchSources {
           git {
-              id(random.nextInt(10 ** 8)) // IMPORTANT: use a constant and unique identifier
+              id((random.nextInt(10 ** 8)).toString()) // IMPORTANT: use a constant and unique identifier
               remote(app.repoUrl)
               credentialsId('github-ci')
           }
