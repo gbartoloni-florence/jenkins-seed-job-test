@@ -10,7 +10,9 @@ def list = []
 
 def dir = new File(workspace + "/seed-job-config/configs")
 dir.eachFileRecurse (FileType.FILES) { file ->
-  list << file
+  if(file.name.endsWith('.yaml')) {
+    list << file
+  }
 }
 
 Yaml parser = new Yaml()
