@@ -36,7 +36,7 @@ list.each { configFile ->
       }
       branchSources {
           git {
-              id = "^${currentjob}"       // accessing variable with escaping
+              id = "^${app.name}"       // accessing variable with escaping
               remote(app.repoUrl)
               credentialsId('github-ci')
           }
@@ -67,3 +67,15 @@ list.each { configFile ->
 }
 
 
+
+
+jobarray = ['job1','job3']
+for(currentjob in jobarray)
+    multibranchPipelineJob("$currentjob") { // normal variable syntax
+        branchSources {
+            git {
+                id = "^${currentjob}"       // accessing variable with escaping
+                remote('https://github.com/jenkinsci/configuration-as-code-plugin.git')
+            }
+        }
+    }
