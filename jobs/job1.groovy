@@ -48,6 +48,24 @@ list.each { configFile ->
               numToKeep(10)
           }
       }
+      properties {
+        folderLibraries {
+          libraries {
+            libraryConfiguration {
+              name("fcg-shared-lib")
+              retriever {
+                modernSCM {
+                  scm {
+                    git {
+                      remote('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   listView(configuration.project) {
