@@ -5,8 +5,6 @@ import java.util.Random
 
 // https://stackoverflow.com/questions/42146524/write-log-from-jenkinsfile
 Logger logger = Logger.getLogger('org.example.jobdsl')
-logger.info(message)
-
 
 def list = []
 
