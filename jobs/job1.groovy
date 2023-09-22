@@ -30,7 +30,7 @@ list.each { configFile ->
       authorization {
         configuration.users.each { user ->
           logger.info("Setting configuration for user " + user.toString())
-          permissions (user.id, ["hudson.model.Item.Read", "hudson.model.View.Read"])
+          permissions (user.id, ["hudson.model.Item.Read", "hudson.model.View.Read", "hudson.model.Item.Build"])
           // permissionAll(user.id)
         }
       }
