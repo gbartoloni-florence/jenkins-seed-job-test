@@ -71,6 +71,7 @@ list.each { configFile ->
               owner(class: 'org.jenkinsci.plugins.inlinepipeline.InlineDefinitionMultiBranchProjectFactory', reference: '../..')
               script('pipeline {\nagent any\nstages {\nsteps {\nshell(\'echo Hello World!\')\n}\n}\n}')
               sandbox(false)
+              markerfile('Jenkinsfile')
           }
       }
     }
