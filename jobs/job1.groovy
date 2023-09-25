@@ -68,7 +68,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script("@Library('fcg-shared-lib') mavenBuildAndDeployCH2()')
+          script("@Library('fcg-shared-lib') mavenBuildAndDeployCH2()")
           sandbox(false)
           markerFile('pom.xml')
         }
