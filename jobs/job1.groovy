@@ -68,7 +68,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionMultiBranchProjectFactory {
-          script('pipeline {\nagent any\nstages {\nsteps {\nshell('echo Hello World!')\n}\n}\n}')
+          script('pipeline {\nagent any\nstages {\nsteps {\nshell(\'echo Hello World!\')\n}\n}\n}')
           sandbox(false)
         }
       }
