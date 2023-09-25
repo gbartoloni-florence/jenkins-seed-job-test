@@ -70,7 +70,7 @@ list.each { configFile ->
         inlineDefinitionBranchProjectFactory {
           script('pipeline {\nagent any\nstages {\nsteps {\nshell(\'echo Hello World!\')\n}\n}\n}')
           sandbox(true)
-          markerfile('Jenkinsfile')
+          markerFile('Jenkinsfile')
         }
       }
       /* configure {
