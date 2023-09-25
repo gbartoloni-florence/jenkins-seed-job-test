@@ -53,6 +53,7 @@ list.each { configFile ->
           libraries {
             libraryConfiguration {
               name("fcg-shared-lib")
+              defaultVersion("main")
               retriever {
                 modernSCM {
                   scm {
