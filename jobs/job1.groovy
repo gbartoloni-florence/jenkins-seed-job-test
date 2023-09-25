@@ -22,9 +22,10 @@ Random random = new Random()
 list.each { configFile -> 
   logger.info("Opening " + configFile.path)
   Map configuration = parser.load((configFile as File).text)
+  String sharedLibraryVersion = configuration.sharedLibraryVersion
   configuration.each{logger.info(it.toString())}
   configuration.apps.each { app ->
-
+    def buildCommand = apps.buildCommand
 
   // com.cloudbees.plugins.credentials.CredentialsProvider.Create,com.cloudbees.plugins.credentials.CredentialsProvider.Delete,com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains,com.cloudbees.plugins.credentials.CredentialsProvider.Update,com.cloudbees.plugins.credentials.CredentialsProvider.View,hudson.model.Item.Build,hudson.model.Item.Cancel,hudson.model.Item.Configure,hudson.model.Item.Create,hudson.model.Item.Delete,hudson.model.Item.Discover,hudson.model.Item.Move,hudson.model.Item.Read,hudson.model.Item.Workspace,hudson.model.Run.Delete,hudson.model.Run.Replay,hudson.model.Run.Update,hudson.model.View.Configure,hudson.model.View.Create,hudson.model.View.Delete,hudson.model.View.Read,hudson.scm.SCM.Tag
 
@@ -53,7 +54,7 @@ list.each { configFile ->
           libraries {
             libraryConfiguration {
               name("fcg-shared-lib")
-              defaultVersion("main")
+              defaultVersion(sharedLibraryVersion)
               retriever {
                 modernSCM {
                   scm {
@@ -69,7 +70,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script("@Library('fcg-shared-lib@main') _\nmavenBuildAndDeployCH2()")
+          script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\n${buildCommand}()")
           sandbox(false)
           markerFile('pom.xml')
         }
