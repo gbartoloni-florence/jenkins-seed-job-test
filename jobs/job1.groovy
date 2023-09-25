@@ -68,7 +68,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script('pipeline {\nagent any\nstages {\n stage{steps {\nshell(\'echo Hello World!\')\n}}\n}\n}')
+          script('mavenBuildAndDeployCH2')
           sandbox(false)
           markerFile('pom.xml')
         }
