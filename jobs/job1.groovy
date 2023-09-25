@@ -66,6 +66,12 @@ list.each { configFile ->
           }
         }
       }
+      configure {
+          it / factory(class: 'org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory') {
+              owner(class: 'org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject', reference: '../..')
+              scriptPath("jenkinsfiles/job1.Jenkinsfile")
+          }
+      }
     }
   }
   listView(configuration.project) {
