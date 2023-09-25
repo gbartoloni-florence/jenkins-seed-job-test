@@ -66,6 +66,13 @@ list.each { configFile ->
           }
         }
       }
+      factory {
+        inlineDefinitionBranchProjectFactory {
+          script('pipeline {\nagent any\nstages {\nsteps {\nshell(\'echo Hello World!\')\n}\n}\n}')
+          sandbox(true)
+          markerfile('Jenkinsfile')
+        }
+      }
       /* configure {
           it / factory(class: 'org.jenkinsci.plugins.inlinepipeline.InlineDefinitionBranchProjectFactory') {
               owner(class: 'org.jenkinsci.plugins.inlinepipeline.InlineDefinitionMultiBranchProjectFactory', reference: '../..')
