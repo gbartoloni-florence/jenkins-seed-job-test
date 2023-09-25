@@ -66,11 +66,30 @@ list.each { configFile ->
           }
         }
       }
-      configure {
-          it / factory(class: 'org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory') {
-              owner(class: 'org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject', reference: '../..')
-              scriptPath("jenkinsfiles/job1.Jenkinsfile")
+      factory {
+        remoteJenkinsFileWorkflowBranchProjectFactory {
+          remoteJenkinsFile('jenkinsfiles/job1.Jenkinsfile')
+          localMarker('') /* everything is valid */
+          remoteJenkinsFileSCM {
+            gitSCM {
+              userRemoteConfigs	{
+                userRemoteConfig {
+                  name('origin')
+                  url('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
+                  refspec("+refs/heads/main:refs/remotes/origin/main")
+                  // credentialsId(SCM_CREDENTIALS_ID)
+                }
+              }
+              branches {
+                branchSpec {
+                  name('main')
+                }
+              }
+              browser {} // required, but doesn't require configuration
+              // gitTool('/usr/bin/env git') // or wherever makes sense
+            }
           }
+        }
       }
     }
   }
