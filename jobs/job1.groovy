@@ -40,6 +40,7 @@ list.each { configFile ->
           git {
               id = "^${app.name}"       // accessing variable with escaping
               remote(app.repoUrl)
+              credentialsId('github-ci')
           }
       }
       orphanedItemStrategy {
@@ -76,6 +77,7 @@ list.each { configFile ->
                   name('origin')
                   url('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
                   refspec("+refs/heads/main:refs/remotes/origin/main")
+                  credentialsId('github-ci')
                 }
               }
               branches {
