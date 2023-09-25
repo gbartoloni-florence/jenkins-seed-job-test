@@ -68,9 +68,9 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script('pipeline {\nagent any\nstages {\nsteps {\nshell(\'echo Hello World!\')\n}\n}\n}')
+          script('pipeline {\nagent any\nstages {\n stage{steps {\nshell(\'echo Hello World!\')\n}}\n}\n}')
           sandbox(false)
-          markerFile('pom.xml')
+          markerFile('*')
         }
       }
       /* configure {
