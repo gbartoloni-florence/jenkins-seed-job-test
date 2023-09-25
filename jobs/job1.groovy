@@ -86,7 +86,7 @@ list.each { configFile ->
                 }
               }
               browser {} // required, but doesn't require configuration
-              // gitTool('/usr/bin/env git') // or wherever makes sense
+              gitTool('/usr/bin/env git') // or wherever makes sense
             }
           }
         }
