@@ -67,28 +67,9 @@ list.each { configFile ->
         }
       }
       factory {
-        remoteJenkinsFileWorkflowBranchProjectFactory {
-          remoteJenkinsFile('jenkinsfiles/job1.Jenkinsfile')
-          localMarker('') /* everything is valid */
-          remoteJenkinsFileSCM {
-            gitSCM {
-              userRemoteConfigs	{
-                userRemoteConfig {
-                  name('origin')
-                  url('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
-                  refspec("+refs/heads/main:refs/remotes/origin/main")
-                  credentialsId('github-ci')
-                }
-              }
-              branches {
-                branchSpec {
-                  name('main')
-                }
-              }
-              browser {} // required, but doesn't require configuration
-              gitTool('/usr/bin/env git') // or wherever makes sense
-            }
-          }
+        inlineDefinitionMultiBranchProjectFactory {
+          script('pipeline {\nagent any\nstages {\nsteps {\nshell('echo Hello World!')\n}\n}\n}')
+          sandbox(false)
         }
       }
     }
