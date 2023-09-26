@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage("Clone Config Git Repository") {
+        stage("Clone Config Git Repository and generate jobs") {
             steps {
                 dir('seed-job-config') {
                     git(

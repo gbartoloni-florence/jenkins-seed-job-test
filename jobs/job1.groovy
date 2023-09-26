@@ -85,6 +85,15 @@ list.each { configFile ->
       } */
     }
   }
+  pipelineJob('dev') {
+    parameters {
+        choiceParam('Application', configuration.apps.map(it.name))
+    }
+    definition {
+      cps {
+            script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\ndeployMulesoftWithManifest()")
+      }
+  }
   listView(configuration.project) {
     jobs {
       configuration.apps.each { app ->
