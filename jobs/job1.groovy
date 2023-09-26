@@ -93,6 +93,7 @@ list.each { configFile ->
       cps {
             script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\ndeployMulesoftWithManifest()")
       }
+    }
   }
   listView(configuration.project) {
     jobs {
