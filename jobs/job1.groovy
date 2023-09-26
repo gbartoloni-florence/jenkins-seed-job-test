@@ -24,7 +24,9 @@ list.each { configFile ->
   Map configuration = parser.load((configFile as File).text)
   String sharedLibraryVersion = configuration.sharedLibraryVersion
   configuration.each{logger.info(it.toString())}
+  def appList = []
   configuration.apps.each { app ->
+    appList << app.name
     def buildCommand = app.buildCommand
 
   // com.cloudbees.plugins.credentials.CredentialsProvider.Create,com.cloudbees.plugins.credentials.CredentialsProvider.Delete,com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains,com.cloudbees.plugins.credentials.CredentialsProvider.Update,com.cloudbees.plugins.credentials.CredentialsProvider.View,hudson.model.Item.Build,hudson.model.Item.Cancel,hudson.model.Item.Configure,hudson.model.Item.Create,hudson.model.Item.Delete,hudson.model.Item.Discover,hudson.model.Item.Move,hudson.model.Item.Read,hudson.model.Item.Workspace,hudson.model.Run.Delete,hudson.model.Run.Replay,hudson.model.Run.Update,hudson.model.View.Configure,hudson.model.View.Create,hudson.model.View.Delete,hudson.model.View.Read,hudson.scm.SCM.Tag
@@ -87,7 +89,7 @@ list.each { configFile ->
   }
   pipelineJob('dev') {
     parameters {
-        choiceParam('Application', configuration.apps.map(it.name))
+        choiceParam('Application', appList)
     }
     definition {
       cps {
