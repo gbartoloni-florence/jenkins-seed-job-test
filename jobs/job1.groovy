@@ -93,26 +93,7 @@ list.each { configFile ->
     }
     definition {
       cps {
-            script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\ndeployMulesoftWithManifest()")
-      }
-    }
-    properties {
-      folderLibraries {
-        libraries {
-          libraryConfiguration {
-            name("fcg-shared-lib")
-            defaultVersion(sharedLibraryVersion)
-            retriever {
-              modernSCM {
-                scm {
-                  git {
-                    remote('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
-                  }
-                }
-              }
-            }
-          }
-        }
+            script("library(identifier: 'fcg-shared-lib@${sharedLibraryVersion}', retriever: modernSCM([ \$class: 'GitSCMSource', remote: 'https://github.com/gbartoloni-florence/jenkins-shared-library.git', credentialsId: 'bitbucket-ci']))\ndeployMulesoftWithManifest()")
       }
     }
   }
