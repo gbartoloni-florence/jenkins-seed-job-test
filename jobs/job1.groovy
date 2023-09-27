@@ -96,6 +96,25 @@ list.each { configFile ->
             script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\ndeployMulesoftWithManifest()")
       }
     }
+    properties {
+      folderLibraries {
+        libraries {
+          libraryConfiguration {
+            name("fcg-shared-lib")
+            defaultVersion(sharedLibraryVersion)
+            retriever {
+              modernSCM {
+                scm {
+                  git {
+                    remote('https://github.com/gbartoloni-florence/jenkins-shared-library.git')
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   listView(configuration.project) {
     jobs {
