@@ -87,13 +87,13 @@ list.each { configFile ->
       } */
     }
   }
-  pipelineJob('dev') {
+  pipelineJob('uat') {
     parameters {
         choiceParam('Application', appList)
     }
     definition {
       cps {
-            script("library(identifier: 'fcg-shared-lib@${sharedLibraryVersion}', retriever: modernSCM([ \$class: 'GitSCMSource', remote: 'https://github.com/gbartoloni-florence/jenkins-shared-library.git', credentialsId: 'bitbucket-ci']))\ndeployMulesoftWithManifest()")
+            script("library(identifier: 'fcg-shared-lib@${sharedLibraryVersion}', retriever: modernSCM([ \$class: 'GitSCMSource', remote: 'https://github.com/gbartoloni-florence/jenkins-shared-library.git', credentialsId: 'bitbucket-ci']))\ndeployMulesoftWithManifest('uat')")
       }
     }
   }
