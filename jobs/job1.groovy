@@ -87,7 +87,7 @@ list.each { configFile ->
       } */
     }
   }
-  ['dev', 'uat', 'prod'].each { env ->
+  ["dev", "uat", "prod"].each { env ->
     pipelineJob(env) {
       parameters {
           choiceParam('Application', appList)
