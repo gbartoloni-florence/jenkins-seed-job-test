@@ -94,7 +94,7 @@ list.each { configFile ->
       }
       definition {
         cps {
-              script("library(identifier: 'fcg-shared-lib@${sharedLibraryVersion}', retriever: modernSCM([ \$class: 'GitSCMSource', remote: 'https://github.com/gbartoloni-florence/jenkins-shared-library.git', credentialsId: 'bitbucket-ci']))\ndeployMulesoftWithManifest(${env})")
+              script("library(identifier: 'fcg-shared-lib@${sharedLibraryVersion}', retriever: modernSCM([ \$class: 'GitSCMSource', remote: 'https://github.com/gbartoloni-florence/jenkins-shared-library.git', credentialsId: 'bitbucket-ci']))\ndeployMulesoftWithManifest('${env}')")
         }
       }
     }
