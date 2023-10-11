@@ -72,7 +72,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\n${buildCommand}()")
+          script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\n${buildCommand}(${app.parameters.toString()})")
           sandbox(false)
           markerFile('pom.xml')
         }
@@ -89,6 +89,7 @@ list.each { configFile ->
   }
   ["dev", "uat", "prod"].each { env ->
     pipelineJob(env) {
+      // https://www.baeldung.com/ops/jenkins-parameterized-builds
       parameters {
           choiceParam('Application', appList)
       }
