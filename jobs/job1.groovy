@@ -72,7 +72,7 @@ list.each { configFile ->
       }
       factory {
         inlineDefinitionBranchProjectFactory {
-          script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\n${buildCommand}(${app.parameters.toString()})")
+          script("@Library('fcg-shared-lib@${sharedLibraryVersion}') _\n${buildCommand}(${"[" + (app.parameters.collect { /"$it.key"="$it.value"/ } join ", ") + "]"})")
           sandbox(false)
           markerFile('pom.xml')
         }
