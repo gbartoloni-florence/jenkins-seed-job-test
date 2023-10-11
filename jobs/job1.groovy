@@ -43,7 +43,7 @@ list.each { configFile ->
           git {
               id = "^${app.name}"       // accessing variable with escaping
               remote(app.repoUrl)
-              credentialsId('github-ci')
+              credentialsId(app.credentialsId)
           }
       }
       orphanedItemStrategy {
