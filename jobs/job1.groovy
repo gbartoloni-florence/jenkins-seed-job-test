@@ -28,7 +28,7 @@ list.each { configFile ->
   configuration.apps.each { app ->
     appList << app.name
     def buildCommand = app.buildCommand
-    def appParameters = "[" + (app.parameters.collect { /"$it.key"="$it.value"/ }.join ", ") + "]"
+    def appParameters = "[" + (app.parameters.collect { /"$it.key"="$it.value"/ }.join(", ")) + "]"
 
   // com.cloudbees.plugins.credentials.CredentialsProvider.Create,com.cloudbees.plugins.credentials.CredentialsProvider.Delete,com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains,com.cloudbees.plugins.credentials.CredentialsProvider.Update,com.cloudbees.plugins.credentials.CredentialsProvider.View,hudson.model.Item.Build,hudson.model.Item.Cancel,hudson.model.Item.Configure,hudson.model.Item.Create,hudson.model.Item.Delete,hudson.model.Item.Discover,hudson.model.Item.Move,hudson.model.Item.Read,hudson.model.Item.Workspace,hudson.model.Run.Delete,hudson.model.Run.Replay,hudson.model.Run.Update,hudson.model.View.Configure,hudson.model.View.Create,hudson.model.View.Delete,hudson.model.View.Read,hudson.scm.SCM.Tag
 
